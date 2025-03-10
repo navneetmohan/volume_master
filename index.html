@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volume Master</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #2e3b4e, #1b1f2c);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            width: 80%;
+            max-width: 900px;
+            overflow: hidden;
+            margin-top: 50px;
+            backdrop-filter: blur(15px);
+        }
+        .video-title {
+            padding: 20px 25px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #1a1a1a;
+            border-bottom: 2px solid #444;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .video-player {
+            position: relative;
+            width: 100%;
+            height: 480px;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-bottom: 2px solid #444;
+            margin-top: 30px;
+        }
+        .video-player img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        .controls {
+            padding: 15px;
+            background-color: #222;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-top: 2px solid #444;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .volume-control {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+            width: 100%;
+        }
+        .volume-bar {
+            margin: 5px 0;
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .volume-bar label {
+            color: #fff;
+            font-size: 14px;
+            margin-right: 10px;
+            width: 100px;
+        }
+        .volume-bar input {
+            width: 100%;
+            height: 5px;
+            background-color: #ccc;
+            border-radius: 5px;
+            margin-left: 10px;
+            appearance: none;
+        }
+        .volume-bar input::-webkit-slider-runnable-track {
+            background-color: #888;
+            border-radius: 5px;
+        }
+        .volume-bar input::-webkit-slider-thumb {
+            background-color: #ff0000;
+            border-radius: 50%;
+            width: 14px;
+            height: 14px;
+            border: none;
+            appearance: none;
+        }
+        .volume-level {
+            color: #fff;
+            font-size: 16px;
+        }
+        .final-volume {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #fff;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .nice-message {
+            font-size: 18px;
+            color: #ff69b4;
+            font-weight: bold;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="video-title" id="videoTitle">Volume Master</div>
+    <div class="video-player">
+        <img src="giphy.gif" alt="GIF Decoy Video">
+    </div>
+    <div class="controls">
+        <div class="volume-control">
+            <div class="volume-bar">
+                <label for="volume1">Bass:</label>
+                <input type="range" id="volume1" min="0" max="100" value="50" step="0.1">
+                <span id="volumeLevel1" class="volume-level">50%</span>
+            </div>
+            <div class="volume-bar">
+                <label for="volume2">Treble:</label>
+                <input type="range" id="volume2" min="0" max="100" value="60" step="0.1">
+                <span id="volumeLevel2" class="volume-level">60%</span>
+            </div>
+            <div class="volume-bar">
+                <label for="volume3">Midrange:</label>
+                <input type="range" id="volume3" min="0" max="100" value="70" step="0.1">
+                <span id="volumeLevel3" class="volume-level">70%</span>
+            </div>
+            <div class="volume-bar">
+                <label for="volume4">Reverb:</label>
+                <input type="range" id="volume4" min="0" max="100" value="80" step="0.1">
+                <span id="volumeLevel4" class="volume-level">80%</span>
+            </div>
+            <div class="volume-bar">
+                <label for="volume5">Echo:</label>
+                <input type="range" id="volume5" min="0" max="100" value="90" step="0.1">
+                <span id="volumeLevel5" class="volume-level">90%</span>
+            </div>
+            <div class="volume-bar">
+                <label for="volume6">Balance:</label>
+                <input type="range" id="volume6" min="0" max="100" value="20" step="0.1">
+                <span id="volumeLevel6" class="volume-level">20%</span>
+            </div>
+            <div class="volume-bar">
+                <label for="volume7">Distortion:</label>
+                <input type="range" id="volume7" min="0" max="100" value="30" step="0.1">
+                <span id="volumeLevel7" class="volume-level">30%</span>
+            </div>
+            <div class="volume-bar">
+                <label for="volume8">Clarity:</label>
+                <input type="range" id="volume8" min="0" max="100" value="40" step="0.1">
+                <span id="volumeLevel8" class="volume-level">40%</span>
+            </div>
+            <div class="volume-bar">
+                <label for="volume9">Treble Boost:</label>
+                <input type="range" id="volume9" min="0" max="100" value="50" step="0.1">
+                <span id="volumeLevel9" class="volume-level">50%</span>
+            </div>
+            <div class="volume-bar">
+                <label for="volume10">Volume Level:</label>
+                <input type="range" id="volume10" min="0" max="100" value="100" step="0.1">
+                <span id="volumeLevel10" class="volume-level">100%</span>
+            </div>
+        </div>
+        <div class="final-volume">
+            Master Volume : <span id="finalVolume">50.00</span>%
+        </div>
+        <div class="nice-message" id="niceMessage">Nice!</div>
+    </div>
+</div>
+
+<script>
+    function calculateFinalVolume() {
+        const volumes = [];
+        let totalVolume = 0;
+
+        for (let i = 1; i <= 10; i++) {
+            volumes.push(parseFloat(document.getElementById(`volume${i}`).value));
+        }
+
+        totalVolume = volumes.reduce((sum, current) => sum + current, 0);
+        let finalVolume = (totalVolume / volumes.length).toFixed(2);
+
+        document.getElementById("finalVolume").textContent = finalVolume;
+
+        if (finalVolume === "69.00") {
+            document.getElementById("niceMessage").style.display = "block";
+            document.getElementById("videoTitle").textContent = "Nice";
+        } else {
+            document.getElementById("niceMessage").style.display = "none";
+            document.getElementById("videoTitle").textContent = "Volume Master";
+        }
+    }
+
+    const volumeSliders = document.querySelectorAll('input[type="range"]');
+    volumeSliders.forEach(slider => {
+        slider.addEventListener('input', (e) => {
+            let value = e.target.value;
+            value = 100 - value;  
+            e.target.value = value;
+            const volumeLevel = e.target.nextElementSibling;
+            volumeLevel.textContent = `${value}%`;
+            calculateFinalVolume();
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", calculateFinalVolume);
+</script>
+
+</body>
+</html>
